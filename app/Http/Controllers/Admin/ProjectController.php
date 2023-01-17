@@ -61,8 +61,13 @@ class ProjectController extends Controller
             $val_data['cover_img'] = $cover_img;
         }
 
-
         $new_project = Project::create($val_data);
+
+        if ($request->has('technologies')) {
+            $new_project->technologies()->attach($val_data['technologies']);
+        }
+
+
 
         //return a view
         return to_route('admin.projects.index')->with('message', "$new_project->title added successfully");
@@ -91,7 +96,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
-        return view('admin.projects.edit', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -116,9 +122,14 @@ class ProjectController extends Controller
             $val_data['cover_img'] = $cover_img;
         }
 
-
-
         $project->update($val_data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($project['technologies']);
+        } else {
+            $project->technologies()->sync([]);
+        }
+
         return to_route('admin.projects.index')->with('message', "$project->title updated successefully");
     }
 
