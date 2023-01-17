@@ -21,7 +21,7 @@ class ProjectSeeder extends Seeder
             $new_project->title = $faker->sentence(3);
 
             //add type_id 
-            $new_project->type_id = $faker->randomElement([0, 1, 2, 3, 4]);
+            //$new_project->type_id = $faker->randomElement([0, 1, 2, 3, 4]);
 
             //add cover_img without faker because it doesn't work
             $new_project->cover_img = 'default.png';
