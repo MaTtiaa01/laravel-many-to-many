@@ -58,7 +58,7 @@
 
                     <option value="{{$technology->id}}" {{in_array($technology->id,old('technologies',[])) ? 'selected' : ''}}>{{$technology->name}}</option>
                     @else
-                    <option value="{{$technology->id}}" {{$project->technologies->contains($technology->id)}}>{{$technology->name}}</option>
+                    <option value="{{$technology->id}}" {{$project->technologies->contains($technology->id) ? 'selected' : ''}}>{{$technology->name}}</option>
                     @endif
                     @empty
                     <option disabled value="">Sorry, no technologies in the system!</option>
