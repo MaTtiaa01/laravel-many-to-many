@@ -84,7 +84,8 @@ class ProjectController extends Controller
         //dd(Type::wherelike('id', $project->type_id));
         $types = Type::all();
         //dd($types[$project->type_id]);
-        return view('admin.projects.show', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.show', compact('project', 'types', 'technologies'));
     }
 
     /**

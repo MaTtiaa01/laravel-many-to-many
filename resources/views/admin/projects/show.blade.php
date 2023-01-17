@@ -8,10 +8,21 @@
     </div>
     <h1>{{$project->title}}</h1>
     <p>{{$project->description}}</p>
-    <p>
-        <strong>Type: </strong>
-        {{$types[$project->type_id]->name}}
-    </p>
-</div>
 
+
+    <!--technologies  -->
+
+    @if(count($project->technologies) > 0)
+
+    <span><strong>Technologies used:</strong> </span>
+    @foreach($project->technologies as $tech)
+    <span>#{{$tech->name}} </span>
+    @endforeach
+
+    @else
+
+    <span>There are no technologies associated with this project</span>
+    @endif
+
+</div>
 @endsection
