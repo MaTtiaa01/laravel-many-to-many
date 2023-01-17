@@ -6,7 +6,9 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Http\Controllers\Controller;
+use App\Models\Technology;
 use App\Models\Type;
+
 //take data from logged user
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +35,9 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        $projects = Project::all();
+        return view('admin.projects.create', compact('types', 'technologies', 'projects'));
     }
 
     /**
@@ -46,6 +50,7 @@ class ProjectController extends Controller
     {
         //validate data
         $val_data = $request->validated();
+
         //save data
         //dd($val_data);
 
